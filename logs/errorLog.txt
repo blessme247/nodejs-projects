@@ -6,3 +6,7 @@
 20251229	14:52:45	0d2bdd3b-86d9-48f2-b9bb-9c48a8ec93bb	TypeError: The first argument must be of type string or an instance of Buffer, ArrayBuffer, or Array or an Array-like Object. Received an instance of Object
 20251229	14:54:42	8c72492c-782a-48e1-aea0-61d81e3d26c5	TypeError: Cannot read properties of undefined (reading 'id')
 20251230	07:22:51	4611739c-8eec-452b-bb50-ba49494d0472	Error: data and hash arguments required
+20251231	07:58:26	bfadeae1-93ca-47fe-8a2a-93d2d4ffa527	TypeError: Cannot destructure property 'user' of 'req.body' as it is undefined.
+20251231	08:30:30	d2671bb7-5798-4036-be30-2f987e38762d	MulterError: File too large
+20251231	08:53:13	095e5e71-0a84-455b-8ed1-de5398a206f6	MulterError: File too large
+20251231	08:55:08	9dc59416-9e95-41cf-ac6e-d91d05314a1c	MulterError: File too large

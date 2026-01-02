@@ -1,7 +1,7 @@
-import employees from "../model/employees.json" with {type: "json"}
+// import employees from "../model/employees.json" with {type: "json"}
 
-const data = {}
-data.employees = employees
+// const data = {}
+// data.employees = employees
 // import fsPromises from "fs/promises"
 // import path from "path"
 // import { fileURLToPath } from 'url';

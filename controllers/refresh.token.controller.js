@@ -1,12 +1,12 @@
-import users from "../model/users.json" with { type: "json" }
+// import users from "../model/users.json" with { type: "json" }
 import jwt from "jsonwebtoken"
 import User from "../model/User.js"
 
 
-const usersDB = {
-    users,
-    // setUsers: function (data) { this.users = data }
-}
+// const usersDB = {
+//     users,
+//     // setUsers: function (data) { this.users = data }
+// }
 
 
 const handleRefreshToken =  async (req, res) => {
@@ -24,7 +24,7 @@ const handleRefreshToken =  async (req, res) => {
         const roles = Object.values(foundUser.roles)
         const accessToken = jwt.sign({"UserInfo": { "username": decrypted.username, "roles": roles}},
             process.env.ACCESS_TOKEN_SECRET,
-            {expiresIn: "10m"}
+            {expiresIn: "30m"}
         )
         res.json({accessToken})
     }

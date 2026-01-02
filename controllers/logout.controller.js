@@ -1,19 +1,19 @@
-import users from "../model/users.json" with { type: "json" }
-import jwt from "jsonwebtoken"
-import path from "path"
-import fsPromises from "fs/promises"
-import { fileURLToPath } from 'url';
-import { dirname as pathDirname } from 'path';
+// import users from "../model/users.json" with { type: "json" }
+// import jwt from "jsonwebtoken"
+// import path from "path"
+// import fsPromises from "fs/promises"
+// import { fileURLToPath } from 'url';
+// import { dirname as pathDirname } from 'path';
 import User from "../model/User.js"
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = pathDirname(__filename);
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = pathDirname(__filename);
 
 
-const usersDB = {
-    users,
-    setUsers: function (data) { this.users = data }
-}
+// const usersDB = {
+//     users,
+//     setUsers: function (data) { this.users = data }
+// }
 
 
 const handleLogout =  async (req, res) => {

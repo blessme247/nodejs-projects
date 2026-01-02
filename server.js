@@ -18,6 +18,7 @@ import registerRouter from "./routes/api/register.js"
 import verifyJwt from "./middleware/verifyJwt.js"
 import refreshRouter from "./routes/api/refresh.js"
 import logoutRouter from "./routes/api/logout.js"
+import uploadRouter from "./routes/api/upload.js"
 import cookieParser from "cookie-parser"
 import credentials from "./middleware/credentials.js";
 import mongoose from "mongoose"
@@ -59,6 +60,7 @@ app.use("/logout", logoutRouter)
 app.use(verifyJwt)
 app.use("/employees", employeesRouter);
 app.use("/users", usersRouter);
+app.use("/upload", uploadRouter)
 
 // chaining route handlers
 // const one = (req, res, next) => {

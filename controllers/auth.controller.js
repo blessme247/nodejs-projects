@@ -1,20 +1,20 @@
-import users from "../model/users.json" with { type: "json" }
+// import users from "../model/users.json" with { type: "json" }
 import bcrypt from "bcrypt"
-import path from "path"
-import fsPromises from "fs/promises"
+// import path from "path"
+// import fsPromises from "fs/promises"
+// import { dirname as pathDirname } from 'path';
 import jwt from "jsonwebtoken"
-import { fileURLToPath } from 'url';
-import { dirname as pathDirname } from 'path';
+// import { fileURLToPath } from 'url';
 import User from "../model/User.js"
 
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = pathDirname(__filename);
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = pathDirname(__filename);
 
-const usersDB = {
-    users,
-    setUsers: function (data) { this.users = data }
-}
+// const usersDB = {
+//     users,
+//     setUsers: function (data) { this.users = data }
+// }
 
 
 const handleLogin = async (req, res) => {
@@ -37,7 +37,7 @@ const handleLogin = async (req, res) => {
                 }
             },
             process.env.ACCESS_TOKEN_SECRET,
-            { expiresIn: '10m' }
+            { expiresIn: '30m' }
         );
         const refreshToken = jwt.sign(
             { username: foundUser.username },
