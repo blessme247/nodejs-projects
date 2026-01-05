@@ -4,4 +4,4 @@
 
 - JWT authentication
 - Role-Based Access Control (RBAC)
-- Image processing with Cloudinary
+- Image processing and transformation with Cloudinary

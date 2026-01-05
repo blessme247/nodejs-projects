@@ -219,3 +219,8 @@
 20260105	18:02:46	3b70a567-ece8-42eb-9e41-30c7544e46bd	PUT	/assets/transform?publicId=nodejs-projects/t4kl7fnr6grrqpsvefs3	undefined
 20260105	18:03:16	21a3e538-e54e-41bf-998a-546e81ce94e8	PUT	/assets/transform?publicId=nodejs-projects/t4kl7fnr6grrqpsvefs3	undefined
 20260105	18:12:41	e742f2f6-7c5e-498b-9d31-f8ddb2539342	PUT	/assets/transform?publicId=nodejs-projects/t4kl7fnr6grrqpsvefs3	undefined
+20260105	18:27:47	11f758af-93ce-4b14-9a2e-c30736a99670	POST	/upload	undefined
+20260105	18:28:00	d7bef12b-e07b-432c-84ef-09e2a0987a48	POST	/auth	undefined
+20260105	18:28:32	09ca04ac-9213-47d4-a067-84aee1bd5cdc	POST	/upload	undefined
+20260105	18:32:16	17bf07f5-b9a5-4094-ad7b-8a8d97499e3e	PUT	/assets/transform?publicId=nodejs-projects/czjp2iqwntrjhmr9bcg1	undefined
+20260105	18:32:42	743130c0-2124-4d85-a503-09fd91d657ab	PUT	/assets/transform?publicId=nodejs-projects/czjp2iqwntrjhmr9bcg1	undefined

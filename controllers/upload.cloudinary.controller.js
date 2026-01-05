@@ -69,12 +69,20 @@ const handleUpload = async (req, res) => {
       const asset = new Asset({
         public_id: result.public_id,
         secure_url: result.secure_url,
+        asset_id: result.asset_id,
+        width: result.width,
+        height: result.height,
+        format: result.format,
+        resource_type: result.resource_type,
+        type: result.type,
+        bytes: result.bytes,
+        folder: result.folder,
         user: foundUser._id ?? "",
       });
       await asset.save();
       return res
         .status(201)
-        .json({ message: "File uploaded successfully.", file: asset });
+        .json({ message: "File uploaded successfully.", data: result });
     }
 
     // console.log(result, 'cloudinary upload result')
