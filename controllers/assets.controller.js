@@ -92,29 +92,25 @@ const handleTransformImage = async (req, res) => {
 
     if (result && result.public_id) {
       const username = req.user;
-      const foundUser = await User.findOne({ username }).exec();
-      // //   console.log(foundUser, "foundUser")
-      // const asset = new Asset({
-      //   public_id: result.public_id,
-      //   secure_url: result.secure_url,
-      //   user: foundUser._id ?? "",
-      // });
-      // await asset.save();
-      const asset = new Asset({
-              public_id: result.public_id,
-              secure_url: result.secure_url,
-              asset_id: result.asset_id,
-              width: result.width,
-              height: result.height,
-              format: result.format,
-              resource_type: result.resource_type,
-              type: result.type,
-              bytes: result.bytes,
-              folder: result.folder,
-              user: foundUser._id ?? "",
-            });
+      // const foundUser = await User.findOne({ username }).exec();
+      const asset = {
+              // public_id: result.public_id,
+              // secure_url: result.secure_url,
+              // asset_id: result.asset_id,
+              // width: result.width,
+              // height: result.height,
+              // format: result.format,
+              // resource_type: result.resource_type,
+              // type: result.type,
+              // bytes: result.bytes,
+              // folder: result.folder,
+              eager: result.eager,
+              // user: foundUser._id ?? ""
+            }
 
-      console.log(result, "result");
+      await Asset.updateOne({public_id: foundImage.public_id}, asset)
+
+      // console.log(result, "result");
       return res.status(200).json({ message: "Image transformed successfully.", data: result });
     }
   } catch (error) {
