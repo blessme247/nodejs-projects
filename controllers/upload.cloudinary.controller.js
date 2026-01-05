@@ -1,5 +1,5 @@
 // handle file upload using multer without saving the file to a folder in the codebase and uploading to clodinary
-import mongoose from "mongoose";
+// import mongoose from "mongoose";
 import dotenv from "dotenv";
 dotenv.config();
 import multer from "multer";
@@ -8,6 +8,8 @@ import { v2 as cloudinary } from "cloudinary";
 const { fileSizeLimit } = constants;
 import Asset from "../model/Asset.js";
 import User from "../model/User.js";
+import utils from "../utils/constants.js"
+const {cloudinaryAssestFolderName} = utils
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -45,7 +47,7 @@ const handleUpload = async (req, res) => {
     const result = await new Promise((resolve) => {
       cloudinary.uploader
         .upload_stream(
-          { resource_type: "auto", folder: "nodejs-projects" },
+          { resource_type: "auto", folder: cloudinaryAssestFolderName,  },
           (error, uploadResult) => {
             if (error) {
               // console.log(error, 'error uploading to cloudinary')
@@ -84,40 +86,6 @@ const handleUpload = async (req, res) => {
   }
 };
 
-const handleTransformImage = async (req, res) => {
-  try {
-    const { public_id } = req.params;
-    const {transformation} = req.body
-    if (!public_id)
-      return res
-        .status(400)
-        .json({ message: "public id parameter is required" });
-
-    const foundImage = await Asset.findOne({ public_id }).exec();
-    if (!foundImage) {
-      return res.status(404).json({
-        message: `Image ${public_id} not found`,
-      });
-    }
-
-    if(!transformation.length || transformation.length == 0){
-        return res
-        .status(400)
-        .json({ message: "invalid request body" }); 
-    }
-
-    // const result = cloudinary.url(foundImage.public_id, {transformation})
-
-  } catch (error) {
-    if (error instanceof mongoose.Error) {
-      if (error.name === "CastError") {
-        return res.status(400).json({ message: "Invalid public id" });
-      }
-    } else {
-      return res.status(500).json({ message: "Internal server error" });
-    }
-  }
-};
 
 export default { uploadAdapter, handleUpload };
 
