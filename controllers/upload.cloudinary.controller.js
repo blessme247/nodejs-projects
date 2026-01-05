@@ -1,4 +1,5 @@
 // handle file upload using multer without saving the file to a folder in the codebase and uploading to clodinary
+import mongoose from "mongoose";
 import dotenv from "dotenv";
 dotenv.config();
 import multer from "multer";
@@ -6,7 +7,7 @@ import constants from "../utils/constants.js";
 import { v2 as cloudinary } from "cloudinary";
 const { fileSizeLimit } = constants;
 import Asset from "../model/Asset.js";
-import User from "../model/User.js"
+import User from "../model/User.js";
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -60,13 +61,13 @@ const handleUpload = async (req, res) => {
     });
 
     if (result && result.secure_url) {
-      const username = req.user
-      const foundUser = await User.findOne({username}).exec()
-    //   console.log(foundUser, "foundUser")
+      const username = req.user;
+      const foundUser = await User.findOne({ username }).exec();
+      //   console.log(foundUser, "foundUser")
       const asset = new Asset({
         public_id: result.public_id,
         secure_url: result.secure_url,
-        user: foundUser._id ?? ""
+        user: foundUser._id ?? "",
       });
       await asset.save();
       return res
@@ -86,19 +87,35 @@ const handleUpload = async (req, res) => {
 const handleTransformImage = async (req, res) => {
   try {
     const { public_id } = req.params;
+    const {transformation} = req.body
     if (!public_id)
       return res
         .status(400)
         .json({ message: "public id parameter is required" });
 
-    const foundImage = Asset.find({ public_id }).exec();
+    const foundImage = await Asset.findOne({ public_id }).exec();
     if (!foundImage) {
-      return res.json({
+      return res.status(404).json({
         message: `Image ${public_id} not found`,
       });
     }
-  } catch (error) {
 
+    if(!transformation.length || transformation.length == 0){
+        return res
+        .status(400)
+        .json({ message: "invalid request body" }); 
+    }
+
+    // const result = cloudinary.url(foundImage.public_id, {transformation})
+
+  } catch (error) {
+    if (error instanceof mongoose.Error) {
+      if (error.name === "CastError") {
+        return res.status(400).json({ message: "Invalid public id" });
+      }
+    } else {
+      return res.status(500).json({ message: "Internal server error" });
+    }
   }
 };
 

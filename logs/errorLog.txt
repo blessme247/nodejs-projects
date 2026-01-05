@@ -10,3 +10,4 @@
 20251231	08:30:30	d2671bb7-5798-4036-be30-2f987e38762d	MulterError: File too large
 20251231	08:53:13	095e5e71-0a84-455b-8ed1-de5398a206f6	MulterError: File too large
 20251231	08:55:08	9dc59416-9e95-41cf-ac6e-d91d05314a1c	MulterError: File too large
+20260105	07:00:39	601719da-fba9-4ee4-bf16-da403eceb031	CastError: Cast to ObjectId failed for value "6953609ef56d97d38f8f9e1" (type string) at path "_id" for model "User"
