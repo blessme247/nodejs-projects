@@ -9,7 +9,8 @@ const assetSchema = new Schema({
       secure_url: {
         type: String,
         required: true
-    }
+    },
+    user: {type: Schema.Types.ObjectId, ref: 'User'}
 })
 
 export default mongoose.model('Asset', assetSchema)

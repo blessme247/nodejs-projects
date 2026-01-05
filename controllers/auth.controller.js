@@ -22,7 +22,7 @@ const handleLogin = async (req, res) => {
     if (!user || !pwd) return res.status(400).json({ 'message': 'Username and password are required.' });
     // const foundUser = usersDB.users.find(person => person.username === user);
     const foundUser = await User.findOne({username: user}).exec()
-    console.log(foundUser, 'found user return query')
+    // console.log(foundUser, 'found user return query')
     if (!foundUser) return res.sendStatus(401); //Unauthorized 
     // evaluate password 
     const match = await bcrypt.compare(pwd, foundUser.password);
@@ -50,8 +50,8 @@ const handleLogin = async (req, res) => {
         // usersDB.setUsers([...otherUsers, currentUser])
         // await fsPromises.writeFile(path.join(__dirname, "..", "model", "users.json"), JSON.stringify(usersDB.users))
 
-       const result = await User.findOneAndUpdate({username: user}, {refreshToken})
-       console.log(result, 'updated user with refreshToken')
+       await User.findOneAndUpdate({username: user}, {refreshToken})
+    //    console.log(result, 'updated user with refreshToken')
         res.cookie('jwt', refreshToken, {httpOnly: true, secure: true, sameSite: "None", maxAge: 24 * 60 * 60 * 1000})
         res.json({  accessToken });
     } else {
