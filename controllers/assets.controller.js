@@ -14,7 +14,7 @@ cloudinary.config({
 const getAllAssets = async (req, res) => {
   const assets = await Asset.find().exec();
   if (!assets) return res.status(204).json({ message: "No assets found." });
-  return res.status(200).json(assets);
+  return res.status(200).json({ data: assets });
 };
 
 const getSingleUserAssets = async (req, res) => {

@@ -4,7 +4,7 @@ import User from "../model/User.js"
 const getAllUsers = async (req, res)=> {
     const users = await User.find().exec()
     if(!users) return res.status(204).json({"message": "No users found."});
-    return res.status(200).json(users)
+    return res.status(200).json({ data: users })
 }
 
 const getSingleUser = async (req, res)=> {

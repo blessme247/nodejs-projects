@@ -14,13 +14,13 @@ import User from "../model/User.js"
 //     setUsers: function (data) { this.users = data }
 // }
 
-const handleNewUser = async (req, res) => {
+const register = async (req, res) => {
     const { user, pwd } = req.body;
     if (!user || !pwd) return res.status(400).json({ 'message': 'Username and password are required.' });
     // check for duplicate usernames in the db
     // const duplicate = usersDB.users.find(person => person.username === user);
     const duplicate = await User.findOne({username: user}).exec()
-    if (duplicate) return res.sendStatus(409); //Conflict 
+    if (duplicate) return res.status(409).json({ 'message': ' Username already exists.' });
     try {
         //encrypt the password
         const hashedPwd = await bcrypt.hash(pwd, 10);
@@ -43,4 +43,4 @@ const handleNewUser = async (req, res) => {
     }
 }
 
-export default handleNewUser 
+export default register 
