@@ -114,7 +114,7 @@ const handleTransformImage = async (req, res) => {
       return res.status(200).json({ message: "Image transformed successfully.", data: result });
     }
   } catch (error) {
-    console.log(error, "catch block error");
+    // console.log(error, "catch block error");
     if (error instanceof mongoose.Error) {
       if (error.name === "CastError") {
         return res.status(400).json({ message: "Invalid public id" });
